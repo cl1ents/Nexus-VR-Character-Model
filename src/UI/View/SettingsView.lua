@@ -33,14 +33,16 @@ function SettingsView:__new()
     local HeaderLogo = NexusWrappedInstance.new("ImageLabel")
     HeaderLogo.BackgroundTransparency = 1
     HeaderLogo.Size = UDim2.new(0.4,0,0.4,0)
-    HeaderLogo.Position = UDim2.new(0.3,0,-0.1,0)
+    HeaderLogo.AnchorPoint = Vector2.new(.5,.5) -- This is like, ten times cleaner :P
+    HeaderLogo.Position = UDim2.new(0.5,0,0,0)
     HeaderLogo.Image = "http://www.roblox.com/asset/?id=10514363148"
     HeaderLogo.Parent = self
 
     local NameText = NexusWrappedInstance.new("TextLabel")
     NameText.BackgroundTransparency = 1
     NameText.Size = UDim2.new(0.8,0,0.1,0)
-    NameText.Position = UDim2.new(0.1,0,0.2,0)
+    NameText.AnchorPoint = Vector2.new(.5,0)
+    NameText.Position = UDim2.new(0.5,0,0.2,0)
     NameText.Font = Enum.Font.SourceSansBold
     NameText.Text = "Nexus VR Character Model"
     NameText.TextScaled = true
@@ -53,7 +55,8 @@ function SettingsView:__new()
     local CameraSettingFrame = NexusWrappedInstance.new("Frame")
     CameraSettingFrame.BackgroundTransparency = 1
     CameraSettingFrame.Size = UDim2.new(0.8,0,0.11,0)
-    CameraSettingFrame.Position = UDim2.new(0.1,0,0.325,0)
+    CameraSettingFrame.AnchorPoint = Vector2.new(.5,0)
+    CameraSettingFrame.Position = UDim2.new(0.5,0,0.325,0)
     CameraSettingFrame.Parent = self
     self:PopulateSettingsFrame(CameraSettingFrame,"View","Camera.EnabledCameraOptions",function()
         return CameraService.ActiveCamera
@@ -64,7 +67,8 @@ function SettingsView:__new()
     local MovementSettingFrame = NexusWrappedInstance.new("Frame")
     MovementSettingFrame.BackgroundTransparency = 1
     MovementSettingFrame.Size = UDim2.new(0.8,0,0.11,0)
-    MovementSettingFrame.Position = UDim2.new(0.1,0,0.325 + (0.15 * 1),0)
+    MovementSettingFrame.AnchorPoint = Vector2.new(.5,0)
+    MovementSettingFrame.Position = UDim2.new(.5,0,0.325 + (0.15 * 1),0)
     MovementSettingFrame.Parent = self
     self:PopulateSettingsFrame(MovementSettingFrame,"Control","Movement.EnabledMovementMethods",function()
         return ControlService.ActiveController
@@ -75,7 +79,8 @@ function SettingsView:__new()
     local CursorSettingFrame = NexusWrappedInstance.new("Frame")
     CursorSettingFrame.BackgroundTransparency = 1
     CursorSettingFrame.Size = UDim2.new(0.8,0,0.11,0)
-    CursorSettingFrame.Position = UDim2.new(0.1,0,0.325 + (0.15 * 2),0)
+    CursorSettingFrame.AnchorPoint = Vector2.new(.5,0)
+    CursorSettingFrame.Position = UDim2.new(0.5,0,0.325 + (0.15 * 2),0)
     CursorSettingFrame.Parent = self
     self:PopulateSettingsFrame(CursorSettingFrame,"Roblox VR Cursor",function()
         return DefaultCursorService.CursorOptionsList
@@ -88,7 +93,8 @@ function SettingsView:__new()
     --Create the callibration settings.
     local RecenterButton,RecenterText = TextButtonFactory:Create()
     RecenterButton.Size = UDim2.new(0.4,0,0.075,0)
-    RecenterButton.Position = UDim2.new(0.075,0,0.85,0)
+    RecenterButton.AnchorPoint = Vector2.new(.5,0)
+    RecenterButton.Position = UDim2.new(0.5,0,0.85,0)
     RecenterButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
     RecenterButton.Parent = self
     RecenterText.Text = "Recenter"
@@ -99,7 +105,8 @@ function SettingsView:__new()
 
     local SetEyeLevelButton,SetEyeLevelText = TextButtonFactory:Create()
     SetEyeLevelButton.Size = UDim2.new(0.4,0,0.075,0)
-    SetEyeLevelButton.Position = UDim2.new(0.525,0,0.85,0)
+    SetEyeLevelButton.AnchorPoint = Vector2.new(.5,0)
+    SetEyeLevelButton.Position = UDim2.new(0.5,0,0.85,0)
     SetEyeLevelButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
     SetEyeLevelButton.Parent = self
     SetEyeLevelText.Text = " Set Eye Level "
