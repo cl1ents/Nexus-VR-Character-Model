@@ -93,8 +93,8 @@ function SettingsView:__new()
     --Create the callibration settings.
     local RecenterButton,RecenterText = TextButtonFactory:Create()
     RecenterButton.Size = UDim2.new(0.4,0,0.075,0)
-    RecenterButton.AnchorPoint = Vector2.new(.5,0)
-    RecenterButton.Position = UDim2.new(0.5,0,0.85,0)
+    RecenterButton.AnchorPoint = Vector2.new(1,0)
+    RecenterButton.Position = UDim2.new(0.475,0,0.85,0)
     RecenterButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
     RecenterButton.Parent = self
     RecenterText.Text = "Recenter"
@@ -105,8 +105,8 @@ function SettingsView:__new()
 
     local SetEyeLevelButton,SetEyeLevelText = TextButtonFactory:Create()
     SetEyeLevelButton.Size = UDim2.new(0.4,0,0.075,0)
-    SetEyeLevelButton.AnchorPoint = Vector2.new(.5,0)
-    SetEyeLevelButton.Position = UDim2.new(0.5,0,0.85,0)
+    SetEyeLevelButton.AnchorPoint = Vector2.new(0,0)
+    SetEyeLevelButton.Position = UDim2.new(0.525,0,0.85,0)
     SetEyeLevelButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
     SetEyeLevelButton.Parent = self
     SetEyeLevelText.Text = " Set Eye Level "
