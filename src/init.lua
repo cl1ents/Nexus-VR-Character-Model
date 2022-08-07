@@ -1,5 +1,6 @@
 --[[
 TheNexusAvenger
+Modified by evn_w
 
 Loads Nexus VR Character Model.
 --]]
@@ -87,6 +88,11 @@ function NexusVRCharacterModel:Load()
         if typeof(HeadCFrame) ~= "CFrame" then return end
         if typeof(LeftHandCFrame) ~= "CFrame" then return end
         if typeof(RightHandCFrame) ~= "CFrame" then return end
+
+        --QOL change for certain devs (cough cough, me! cough cough), you can ignore this though
+		if Player.Character then
+			Player.Character:SetAttribute('VR', true)
+		end
 
         --Ignore if the rate limit was reached.
         if UpdateRateLimiter:RateLimitReached(Player) then return end

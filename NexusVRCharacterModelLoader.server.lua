@@ -1,8 +1,9 @@
 --[[
 TheNexusAvenger
+Modified by evn_w
 
 Loads Nexus VR Character Model.
-GitHub: TheNexusAvenger/Nexus-VR-Character-Model
+GitHub: cl1ents/Nexus-VR-Character-Model
 --]]
 
 local Configuration = {
@@ -25,6 +26,12 @@ local Configuration = {
 
         --Maximum angle the center of the torso can bend.
         MaxTorsoBend = math.rad(10),
+        
+		--Arm precision depth, must be above 2 or it'll look jank lol (WILL EAT FPS IF SET HIGHER!!)
+		ArmPrecisionDepth = 4,
+		
+		--Minimum arm precision, minimum distance between wrist on the hand and on the lower hand
+		MinimumArmPrecision = .03,
     },
     Camera = {
         --Options for the camera that can be enabled by the user.

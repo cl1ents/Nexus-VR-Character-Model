@@ -4,6 +4,14 @@ controls and camera of R15 Roblox characters
 and maps the character to the player's headset
 and hand controllers.
 
+## Notice from cl1ents
+This ISN'T the official repo!
+It's simply just a fork of [TheNexusAvenger's Nexus VR](https://github.com/TheNexusAvenger/Nexus-VR-Character-Model)
+with some changes **I** <small>(and only I)</small> deemed good enough to add.
+
+This will most likely not get supported as often as you think, you're better off using the official version.
+Enjoy!
+
 ## Menu
 To access the menu, the left controller must be
 rotated counter-clockwise and the right controller
@@ -23,6 +31,16 @@ games.
 * The foot-planting code is old and could use a rewrite.
 * The menu gesture is not obvious. Most players may
   not know about it.
+
+## Changes compared to the official version
+* Changes to the arm solver, [as seen here](https://github.com/TheNexusAvenger/Nexus-VR-Character-Model/issues/9#issuecomment-1173406033).
+* Added `ArmPrecisionDepth` and `MinimumArmPrecision` as tweakable settings.
+* Fixed issue with any animations making the player snap weirdly when played.
+
+### TO-DO
+* Different way of updating motors whenever the rig is changed in any way (example, different package equipped dynamically) to accomidate for animation fix (also performance i think!!)
+* R6 compatibility! (MAYBE)
+* Merge a few of my own changes into the main project (? :no_mouth:)
 
 # Setup
 The repository can be synced into Roblox using

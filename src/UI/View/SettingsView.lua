@@ -34,7 +34,7 @@ function SettingsView:__new()
     HeaderLogo.BackgroundTransparency = 1
     HeaderLogo.Size = UDim2.new(0.4,0,0.4,0)
     HeaderLogo.Position = UDim2.new(0.3,0,-0.1,0)
-    HeaderLogo.Image = "http://www.roblox.com/asset/?id=1499731139"
+    HeaderLogo.Image = "http://www.roblox.com/asset/?id=10514363148"
     HeaderLogo.Parent = self
 
     local NameText = NexusWrappedInstance.new("TextLabel")

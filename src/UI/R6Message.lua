@@ -1,5 +1,6 @@
 --[[
 TheNexusAvenger
+Modified (ever so slightly) by evn_w
 
 Displays a message if R6 is used.
 --]]
@@ -42,7 +43,7 @@ function R6Message:__new()
     Logo.BackgroundTransparency = 1
     Logo.Size = UDim2.new(0.4,0,0.4,0)
     Logo.Position = UDim2.new(0.3,0,-0.1,0)
-    Logo.Image = "http://www.roblox.com/asset/?id=1499731139"
+    Logo.Image = "http://www.roblox.com/asset/?id=10514363148"
     Logo.Parent = self
 
     local UpperText = NexusWrappedInstance.new("TextLabel")

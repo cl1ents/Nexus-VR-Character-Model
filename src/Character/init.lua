@@ -1,5 +1,6 @@
 --[[
 TheNexusAvenger
+Modified by evn_w
 
 Manipulates a character model.
 --]]
@@ -65,6 +66,23 @@ function Character:__new(CharacterModel)
         LeftFoot = CharacterModel:WaitForChild("LeftFoot"),
     }
     self.Motors = {
+        Neck = self.Parts.Head:WaitForChild("Neck"):Clone(),
+        Waist = self.Parts.UpperTorso:WaitForChild("Waist"):Clone(),
+        Root = self.Parts.LowerTorso:WaitForChild("Root"):Clone(),
+        RightShoulder = self.Parts.RightUpperArm:WaitForChild("RightShoulder"):Clone(),
+        RightElbow = self.Parts.RightLowerArm:WaitForChild("RightElbow"):Clone(),
+        RightWrist = self.Parts.RightHand:WaitForChild("RightWrist"):Clone(),
+        LeftShoulder = self.Parts.LeftUpperArm:WaitForChild("LeftShoulder"):Clone(),
+        LeftElbow = self.Parts.LeftLowerArm:WaitForChild("LeftElbow"):Clone(),
+        LeftWrist = self.Parts.LeftHand:WaitForChild("LeftWrist"):Clone(),
+        RightHip = self.Parts.RightUpperLeg:WaitForChild("RightHip"):Clone(),
+        RightKnee = self.Parts.RightLowerLeg:WaitForChild("RightKnee"):Clone(),
+        RightAnkle = self.Parts.RightFoot:WaitForChild("RightAnkle"):Clone(),
+        LeftHip = self.Parts.LeftUpperLeg:WaitForChild("LeftHip"):Clone(),
+        LeftKnee = self.Parts.LeftLowerLeg:WaitForChild("LeftKnee"):Clone(),
+        LeftAnkle = self.Parts.LeftFoot:WaitForChild("LeftAnkle"):Clone(),
+    }
+    self.RealMotors = {
         Neck = self.Parts.Head:WaitForChild("Neck"),
         Waist = self.Parts.UpperTorso:WaitForChild("Waist"),
         Root = self.Parts.LowerTorso:WaitForChild("Root"),
@@ -197,10 +215,12 @@ function Character:__new(CharacterModel)
         if Players.LocalPlayer and Players.LocalPlayer.Character == CharacterModel then
             CharacterModel:WaitForChild("Animate"):Destroy()
             for _,Track in pairs(Animator:GetPlayingAnimationTracks()) do
-                Track:Stop()
+                Track:AdjustWeight(0,0)
+                Track:Stop(0)
             end
             Animator.AnimationPlayed:Connect(function(Track)
-                Track:Stop()
+                Track:AdjustWeight(0,0)
+                Track:Stop(0)
             end)
         else
             Animator:Destroy()
@@ -211,10 +231,12 @@ function Character:__new(CharacterModel)
             if Players.LocalPlayer and Players.LocalPlayer.Character == CharacterModel then
                 CharacterModel:WaitForChild("Animate"):Destroy()
                 for _,Track in pairs(NewAnimator:GetPlayingAnimationTracks()) do
-                    Track:Stop()
+                    Track:AdjustWeight(0,0)
+                    Track:Stop(0)
                 end
                 NewAnimator.AnimationPlayed:Connect(function(Track)
-                    Track:Stop()
+                    Track:AdjustWeight(0,0)
+                    Track:Stop(0)
                 end)
             else
                 NewAnimator:Destroy()
@@ -313,8 +335,8 @@ function Character:UpdateFromInputs(HeadControllerCFrame,LeftHandControllerCFram
     local NeckCFrame = self.Head:GetNeckCFrame(HeadControllerCFrame)
 	local LowerTorsoCFrame,UpperTorsoCFrame = self.Torso:GetTorsoCFrames(NeckCFrame)
 	local JointCFrames = self.Torso:GetAppendageJointCFrames(LowerTorsoCFrame,UpperTorsoCFrame)
-	local LeftUpperArmCFrame,LeftLowerArmCFrame,LeftHandCFrame = self.LeftArm:GetAppendageCFrames(JointCFrames["LeftShoulder"],LeftHandControllerCFrame)
-	local RightUpperArmCFrame,RightLowerArmCFrame,RightHandCFrame = self.RightArm:GetAppendageCFrames(JointCFrames["RightShoulder"],RightHandControllerCFrame)
+	local LeftUpperArmCFrame,LeftLowerArmCFrame,LeftHandCFrame = self.LeftArm:GetAppendageCFrames(JointCFrames["LeftShoulder"],LeftHandControllerCFrame, true) -- da little trues for da arms....
+	local RightUpperArmCFrame,RightLowerArmCFrame,RightHandCFrame = self.RightArm:GetAppendageCFrames(JointCFrames["RightShoulder"],RightHandControllerCFrame, true)
 
     --Set the character CFrames.
     --HumanoidRootParts must always face up. This makes the math more complicated.
@@ -343,6 +365,11 @@ function Character:UpdateFromInputs(HeadControllerCFrame,LeftHandControllerCFram
     self:SetTransform("LeftShoulder","LeftShoulderRigAttachment","UpperTorso","LeftUpperArm",UpperTorsoCFrame,LeftUpperArmCFrame)
     self:SetTransform("LeftElbow","LeftElbowRigAttachment","LeftUpperArm","LeftLowerArm",LeftUpperArmCFrame,LeftLowerArmCFrame)
     self:SetTransform("LeftWrist","LeftWristRigAttachment","LeftLowerArm","LeftHand",LeftLowerArmCFrame,LeftHandCFrame)
+
+    --Change real motor's transforms, too!
+    for Name,Motor in pairs(self.Motors) do
+        self.RealMotors[Name].Transform = Motor.Transform
+    end
 
     --Replicate the changes to the server.
     if Players.LocalPlayer and Players.LocalPlayer.Character == self.CharacterModel then
