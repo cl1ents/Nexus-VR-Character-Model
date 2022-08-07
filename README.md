@@ -39,6 +39,8 @@ games.
 
 ### TO-DO
 * Different way of updating motors whenever the rig is changed in any way (example, different package equipped dynamically) to accomidate for animation fix (also performance i think!!)
+* Add a USER FACING SETTING to disable the blur on snap turning
+* Add smooth turning
 * R6 compatibility! (MAYBE)
 * Merge a few of my own changes into the main project (? :no_mouth:)
 
